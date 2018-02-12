@@ -1,23 +1,12 @@
 require('sinatra')
 require('sinatra/contrib/all')
-require_relative('controller.rb')
+require_relative('./models/game.rb')
 
-get '/:player1/:player2' do
-  player1 = params[:player1]
-  player2 = params[:player2]
-  if player1 == 'rock' && player2 == 'scissors'
-    return "rock wins!"
-  elsif player1 == "scissors" && player2 == "paper"
-    return "scissors win!"
-  elsif player1 == "paper" && player2 == "rock"
-    return "paper wins"
-  elsif player1 == "rock" && player2 == "paper"
-    return "rock wins!"
-  elsif player1 == "scissors" && player2 == "rock"
-    return "rock wins!"
-  end
+
+get '/game/:play1/:play2' do
+  play1 = params[:play1]
+  play2 = params[:play2]
+  game = Game.new(play1, play2)
+  @winner = game.win()
+  erb(:result)
 end
-
-# get '/rock/scissors/' do
-#   'rock wins'
-# end
