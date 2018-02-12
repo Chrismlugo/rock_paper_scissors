@@ -19,6 +19,8 @@ class Game
       return "rock wins!"
     elsif @play1 == "rock" && @play2 == "scissors"
       return "rock wins!"
+    elsif @play1 == "paper" && @play2 == "scissors"
+      return "scissors win!"
     end
   end
 end
